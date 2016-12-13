@@ -1,0 +1,18 @@
+{
+  "first_ask": [
+    {
+      "next_state": "first_ask_2",
+      "wait_time": 2.0,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ],
+  "first_ask2": [
+    {
+      "next_state": "first_ask_2",
+      "wait_time": 2.0,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ]
+}

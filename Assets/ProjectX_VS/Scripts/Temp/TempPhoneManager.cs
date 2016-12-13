@@ -88,6 +88,7 @@ public class TempPhoneManager : MonoBehaviour {
 		{"Q_02_2", "hangup"},
 	};
 
+	public ReadJson					ReadJson;
 	public AudioDataManager 		AudioDataManagerObject;
 	public AudioSource				AudioSource;
 	public Text						DebugTimer;
@@ -96,6 +97,22 @@ public class TempPhoneManager : MonoBehaviour {
 	public float 					SuspectDecreaseTime = 10.0f;
 	public float					SuspectRecoverValue = 5.0f;
 	public int						RetryRound = 2;
+
+	public string					CurState
+	{
+		set
+		{
+			if( value != m_cur_state )
+			{
+				m_play_once = false;
+			}
+			m_cur_state = value;
+		}
+		get
+		{
+			return m_cur_state;
+		}
+	}
 
 	private List<AudioUnit> 		m_audio_unit_list;
 	private List<string> 			m_insertAudios = new List<string>();
@@ -110,6 +127,7 @@ public class TempPhoneManager : MonoBehaviour {
 	private float					m_interrupt_time = 0.0f;
 	private float 					m_suspect_decrease_time;
 	private int						m_retry_round = 0;
+	private bool					m_play_once = false;
 
 	void Start () 
 	{
@@ -139,34 +157,30 @@ public class TempPhoneManager : MonoBehaviour {
 	 
 	void Update ()
 	{
-		switch(m_cur_state)
+		switch(CurState)
 		{
-		case "init":
-			AudioSource.Play();
-
-			m_insertAudios.Clear();
-			m_insertAudios.Add("Q_01");
-			m_insertAudios.Add("Q_02");
-			RefreshAudioDataManager();
-
-			m_cur_state = "first_ask";
-			break;
 		case "first_ask":
+			if( PlayAudioFirstTime("C_01") )
+			{
+				m_insertAudios.Clear();
+				m_insertAudios.Add("Q_01");
+				m_insertAudios.Add("Q_02");
+				RefreshAudioDataManager();
+				return;
+			}
+
 			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 				
 			if( CheckAudioChoice() )
 				return;	
 			else
-				CheckAudioWaitTimer( "first_ask_2", 2.0f );
+				CheckNextState( CurState );
 			
 			break;
-		case "first_ask_2":
-			AudioSource.clip = FindAudioClipByName("C_02");
-			AudioSource.Play();
-			m_cur_state = "first_ask_2_wait";
 
-			break;
-		case "first_ask_2_wait":
+		case "first_ask_2":
+			if( PlayAudioFirstTime("C_02") ) return;
+
 			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() )
@@ -178,11 +192,8 @@ public class TempPhoneManager : MonoBehaviour {
 
 
 		case "signal":
-			AudioSource.clip = FindAudioClipByName("C_03");
-			AudioSource.Play();
-			m_cur_state = "signal_wait";
-			break;
-		case "signal_wait":
+			if( PlayAudioFirstTime("C_03") ) return;
+
 			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 				
 			if( CheckAudioChoice() ) 
@@ -194,11 +205,8 @@ public class TempPhoneManager : MonoBehaviour {
 
 
 		case "water":
-			AudioSource.clip = FindAudioClipByName("C_04");
-			AudioSource.Play();
-			m_cur_state = "water_wait";
-			break;
-		case "water_wait":
+			if( PlayAudioFirstTime("C_04") ) return;
+
 			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() ) 
@@ -208,17 +216,17 @@ public class TempPhoneManager : MonoBehaviour {
 			break;
 
 		
-		case "back_check":
-			m_insertAudios.Clear();
-			m_insertAudios.Add("Q_01");
-			m_insertAudios.Add("Q_02");
-			RefreshAudioDataManager();
 
-			AudioSource.clip = FindAudioClipByName("C_S01");
-			AudioSource.Play();
-			m_cur_state = "back_check_wait";
-			break;
-		case "back_check_wait":
+		case "back_check":
+			if( PlayAudioFirstTime("C_S01") )
+			{
+				m_insertAudios.Clear();
+				m_insertAudios.Add("Q_01");
+				m_insertAudios.Add("Q_02");
+				RefreshAudioDataManager();
+				return;
+			}
+
 			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() ) 
@@ -227,12 +235,11 @@ public class TempPhoneManager : MonoBehaviour {
 				CheckAudioWaitTimer("suepect_sequence_update", 2.0f, 2, true );
 			break;
 
+
+
 		case "almost_hangup":
-			AudioSource.clip = FindAudioClipByName("C_03");
-			AudioSource.Play();
-			m_cur_state = "almost_hangup_wait";
-			break;
-		case "almost_hangup_wait":
+			if( PlayAudioFirstTime("C_03") ) return;
+
 			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() ) 
@@ -242,27 +249,27 @@ public class TempPhoneManager : MonoBehaviour {
 			break;
 
 		case "hangup":
-			AudioSource.clip = FindAudioClipByName("C_05");
-			AudioSource.Play();
-			m_cur_state = "end";
+			if( PlayAudioFirstTime("C_05") ) return;
+
+			CurState = "end";
 			break;
+
 
 		case "detailed_explain":
-			m_insertAudios.Clear();
-			m_insertAudios.Add("Q_03");
-			m_insertAudios.Add("Q_04");
-			m_insertAudios.Add("Q_05");
-			m_insertAudios.Add("Q_06");
-			RefreshAudioDataManager();
+			if( PlayAudioFirstTime("C_07") )
+			{
+				m_insertAudios.Clear();
+				m_insertAudios.Add("Q_03");
+				m_insertAudios.Add("Q_04");
+				m_insertAudios.Add("Q_05");
+				m_insertAudios.Add("Q_06");
+				RefreshAudioDataManager();
 
-			AudioSource.clip = FindAudioClipByName("C_07");
-			AudioSource.Play();
+				InitSuspectValue();
 
-			InitSuspectValue();
+				return;
+			}
 
-			m_cur_state = "detailed_explain_wait";
-			break;
-		case "detailed_explain_wait":
 			CheckSuspectValue();
 
 			break;
@@ -273,7 +280,7 @@ public class TempPhoneManager : MonoBehaviour {
 			{
 				return;
 			}
-			m_cur_state = AnswerChoiceDictionary[m_choice];
+			CurState = AnswerChoiceDictionary[m_choice];
 			break;
 		case "suepect_sequence_update":
 			UpdateSuspectAudioSequence();
@@ -293,7 +300,7 @@ public class TempPhoneManager : MonoBehaviour {
 				RefreshAudioDataManager();
 
 				InitSuspectAudioSequence( seq_1 );
-				m_cur_state = "suepect_sequence_update";
+				CurState = "suepect_sequence_update";
 			}
 			break;
 		case "end":
@@ -331,8 +338,20 @@ public class TempPhoneManager : MonoBehaviour {
 		//Create suspect sequence
 		seq_1 = CreateSuspectAudioSeqByName("A");
 
-		AudioSource.clip = FindAudioClipByName("C_01");
-		m_cur_state = "init";
+		CurState = "first_ask";
+	}
+
+	private bool PlayAudioFirstTime( string audioName )
+	{
+		if( !m_play_once )
+		{
+			AudioSource.clip = FindAudioClipByName( audioName );
+			AudioSource.Play();
+			m_play_once = true;
+
+			return true;
+		}	
+		return false;
 	}
 
 	private void InitSuspectValue()
@@ -375,7 +394,7 @@ public class TempPhoneManager : MonoBehaviour {
 				}
 			}
 			m_interrupt_time = interrupt_points[interrupt_point_index];
-			m_cur_state = "Interrupt";
+			CurState = "Interrupt";
 		}
 	}
 
@@ -430,7 +449,7 @@ public class TempPhoneManager : MonoBehaviour {
 			}
 			else
 			{
-				m_cur_state = "end";
+				CurState = "end";
 				//Play call end audio
 			}
 		}
@@ -514,7 +533,7 @@ public class TempPhoneManager : MonoBehaviour {
 			string choice_name = AudioDataManagerObject.AudioChoiceName;
 			choice_name += ( "_" + m_retry_round.ToString());
 			m_choice = choice_name;
-			m_cur_state = "Answer_1";
+			CurState = "Answer_1";
 
 			AudioDataManagerObject.AudioChoiceName = string.Empty;
 			m_normal_timer = 0.0f;
@@ -522,6 +541,16 @@ public class TempPhoneManager : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	public void CheckNextState( string stateName )
+	{
+		string next_state = ReadJson.GetStateDataByFiled("first_ask", "next_state").ToString();
+		double wait_time = (double)ReadJson.GetStateDataByFiled("first_ask", "wait_time");
+		int retry_round = (int)ReadJson.GetStateDataByFiled("first_ask", "retry_round");
+		bool start_suspect = (bool)ReadJson.GetStateDataByFiled("first_ask", "start_suspect");
+
+		CheckAudioWaitTimer( next_state, (float)wait_time, retry_round, start_suspect );
 	}
 
 	public void CheckAudioWaitTimer( string nextState, float time, int retryRound = 0, bool toSuspectSeq = false )
@@ -540,10 +569,10 @@ public class TempPhoneManager : MonoBehaviour {
 				m_retry_round = retryRound;
 				InitSuspectAudioSequence( seq_1 );
 
-				m_cur_state = "suepect_sequence_update";
+				CurState = "suepect_sequence_update";
 			}
 
-			m_cur_state = nextState;
+			CurState = nextState;
 		}
 	}
 }

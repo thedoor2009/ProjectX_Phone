@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3D697F76-1FE3-91C4-4B88-D59496B53084}</ProjectGuid>
+    <ProjectGuid>{9BB6AAE4-410A-03C2-48F2-B09F538EB0F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -96,6 +96,7 @@
      <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\UISystemTime.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\AudioFilesReader.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\ButtonStateController.cs" />
+     <Compile Include="Assets\ProjectX_VS\Scripts\Shared\ReadJson.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\UILayoutAdjuster.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Temp\TempMovieManager.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Temp\TempPhoneManager.cs" />
@@ -112,6 +113,9 @@
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity5.4.0/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>/Users/Kiss/Desktop/ProjectX_Phone/ProjectX_Phone/Assets/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
