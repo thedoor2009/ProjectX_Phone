@@ -186,7 +186,7 @@ public class TempPhoneManager : MonoBehaviour {
 			if( CheckAudioChoice() )
 				return;	
 			else
-				CheckAudioWaitTimer("suepect_sequence_update", 4.0f, 0, true );
+				CheckNextState( CurState );
 			break;
 
 
@@ -199,7 +199,7 @@ public class TempPhoneManager : MonoBehaviour {
 			if( CheckAudioChoice() ) 
 				return;
 			else
-				CheckAudioWaitTimer("detailed_explain", 4.5f);
+				CheckNextState( CurState );
 			break;
 
 
@@ -212,7 +212,7 @@ public class TempPhoneManager : MonoBehaviour {
 			if( CheckAudioChoice() ) 
 				return;
 			else
-				CheckAudioWaitTimer("back_check", 8.0f);
+				CheckNextState( CurState );
 			break;
 
 		
@@ -232,7 +232,7 @@ public class TempPhoneManager : MonoBehaviour {
 			if( CheckAudioChoice() ) 
 				return;
 			else
-				CheckAudioWaitTimer("suepect_sequence_update", 2.0f, 2, true );
+				CheckNextState( CurState );
 			break;
 
 
@@ -245,7 +245,7 @@ public class TempPhoneManager : MonoBehaviour {
 			if( CheckAudioChoice() ) 
 				return;
 			else
-				CheckAudioWaitTimer("detailed_explain", 4.5f );
+				CheckNextState( CurState );
 			break;
 
 		case "hangup":
@@ -545,10 +545,10 @@ public class TempPhoneManager : MonoBehaviour {
 
 	public void CheckNextState( string stateName )
 	{
-		string next_state = ReadJson.GetStateDataByFiled("first_ask", "next_state").ToString();
-		double wait_time = (double)ReadJson.GetStateDataByFiled("first_ask", "wait_time");
-		int retry_round = (int)ReadJson.GetStateDataByFiled("first_ask", "retry_round");
-		bool start_suspect = (bool)ReadJson.GetStateDataByFiled("first_ask", "start_suspect");
+		string next_state = ReadJson.GetStateDataByFiled(stateName, "next_state").ToString();
+		double wait_time = (double)ReadJson.GetStateDataByFiled(stateName, "wait_time");
+		int retry_round = (int)ReadJson.GetStateDataByFiled(stateName, "retry_round");
+		bool start_suspect = (bool)ReadJson.GetStateDataByFiled(stateName, "start_suspect");
 
 		CheckAudioWaitTimer( next_state, (float)wait_time, retry_round, start_suspect );
 	}

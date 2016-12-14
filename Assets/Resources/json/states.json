@@ -7,10 +7,42 @@
       "start_suspect":false
     }
   ],
-  "first_ask2": [
+  "first_ask_2": [
     {
-      "next_state": "first_ask_2",
+      "next_state": "suepect_sequence_update",
+      "wait_time": 4.0,
+      "retry_round": 1,
+      "start_suspect":true
+    }
+  ],
+  "signal": [
+    {
+      "next_state": "detailed_explain",
+      "wait_time": 4.5,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ],
+  "water": [
+    {
+      "next_state": "back_check",
+      "wait_time": 8.0,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ],
+  "back_check": [
+    {
+      "next_state": "suepect_sequence_update",
       "wait_time": 2.0,
+      "retry_round": 2,
+      "start_suspect":true
+    }
+  ],
+  "almost_hangup": [
+    {
+      "next_state": "detailed_explain",
+      "wait_time": 4.5,
       "retry_round": 0,
       "start_suspect":false
     }
