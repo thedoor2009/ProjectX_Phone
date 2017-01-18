@@ -45,74 +45,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avcodec.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avdevice.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avfilter.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avformat.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.avutil.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.swresample.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\FFmpeg.swscale.g.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\Properties\AssemblyInfo.cs" />
-     <Compile Include="Assets\EasyMovieTexture\FFmpeg.AutoGen\Unresolved.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\MedaiPlayerSampleGUI.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\MedaiPlayerSampleSphereGUI.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\MediaPlayerCtrl.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\MediaPlayerEvent.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\MediaPlayerFullScreenCtrl.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\SeekBarCtrl.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\SphereMirror.cs" />
-     <Compile Include="Assets\EasyMovieTexture\Scripts\VideoCopyTexture.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Login\LoginCompoentController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\Login\LoginManager.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Audio\AudioDataManager.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Audio\AudioDataSource.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Audio\AudioObjectController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventTrigger.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventTriggerMovie.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventTriggerNotebook.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventTriggerNotification.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventTriggerPhone.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Event\EventTriggerSkype.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\ElevatorMovieLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\EntranceMovieLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\HallMovieLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\LivingRoomMovieLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\MovieController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\MovieLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\MoviesManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\SherryCallLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\Movie\VS_TestFakeMovisLogicManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\CallAPPManager.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\DropDownList.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\LoadingVFX.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\LoginLoadingVFX.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\NoteController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\NotificationController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\UIController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\UIIconController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\UIMananger.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\UIMovieController.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\MainScene\UI\UISystemTime.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\AudioFilesReader.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\ButtonStateController.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\ReadJson.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\UILayoutAdjuster.cs" />
-     <Compile Include="Assets\ProjectX_VS\Scripts\Temp\TempMovieManager.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Temp\TempPhoneManager.cs" />
-     <None Include="Assets\EasyMovieTexture\Unlit_SphereInside.shader" />
-     <None Include="Assets\EasyMovieTexture\Chromakey.shader" />
-     <None Include="Assets\EasyMovieTexture\readme.txt" />
-     <None Include="Assets\EasyMovieTexture\Chromakey2.shader" />
-     <None Include="Assets\EasyMovieTexture\readme_License.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity5.4.0/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity5.4.0/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity5.4.0/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity5.4.0/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
  <HintPath>/Users/Kiss/Desktop/ProjectX_Phone/ProjectX_Phone/Assets/LitJson.dll</HintPath>

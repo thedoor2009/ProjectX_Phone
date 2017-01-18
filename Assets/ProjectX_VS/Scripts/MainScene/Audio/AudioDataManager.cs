@@ -86,7 +86,7 @@ public class AudioDataManager : MonoBehaviour {
 
 	public void DisableLoadingVFX()
 	{
-		LoadingSreenVFX.GetComponent<LoginLoadingVFX>().Reset();
+		//LoadingSreenVFX.GetComponent<LoginLoadingVFX>().Reset();
 		LoadingSreenVFX.SetActive(false);
 	}
 
