@@ -68,6 +68,11 @@ public class TempPhoneManager : MonoBehaviour {
 		{ "C_07", new List<float>{ 16.0f, 22.5f, 30.0f, 40.0f, 59.0f } }
 	};
 
+	private Dictionary<string, List<float>> WaitAudioUnitDictionary = new Dictionary<string, List<float>>
+	{
+		{ "C_07", new List<float>{ 7.0f, 16.5f } }
+	};
+
 	private Dictionary<string, List<string>> SuspectSequenceAudioDictionary = new Dictionary<string, List<string>>
 	{
 		{ "A", new List<string>{ "C_S01","C_S01","C_S02","C_S03" }}
@@ -126,8 +131,11 @@ public class TempPhoneManager : MonoBehaviour {
 	private float					m_normal_timer = 0.0f;
 	private float					m_interrupt_time = 0.0f;
 	private float 					m_suspect_decrease_time;
+	private float					m_wait_timer = 0.0f;
 	private int						m_retry_round = 0;
+	private int						m_wait_point = 0;
 	private bool					m_play_once = false;
+	private bool					m_wait_flag = false;
 
 	void Start () 
 	{
@@ -359,8 +367,42 @@ public class TempPhoneManager : MonoBehaviour {
 		m_suspect_decrease_time = SuspectDecreaseTime;
 	}
 
+	private bool CheckWaitFlag()
+	{
+		if(m_wait_flag) return true;
+
+		Debug.Log(m_wait_timer);
+		m_wait_timer += Time.deltaTime;
+
+		List<float> wait_points = WaitAudioUnitDictionary[AudioSource.clip.name];
+		if( m_wait_point >= wait_points.Count ) return false;
+
+		for( int index = m_wait_point; index < wait_points.Count; index++ )
+		{
+			if( m_wait_timer - wait_points[index] < 3.0f && m_wait_timer - wait_points[index] > 0.0f )
+			{
+				m_wait_point++;
+				m_wait_flag = true;
+				AudioSource.Pause();
+				StartCoroutine(AudioWait(1.0f));
+				break;
+			}
+		}
+
+		return false;
+	}
+
+	IEnumerator AudioWait( float time )
+	{
+		yield return new WaitForSeconds( time );
+		m_wait_flag = false;
+		AudioSource.UnPause();
+	}
+
 	private void CheckSuspectValue()
 	{
+		if(CheckWaitFlag()) return;
+
 		SuspectValue.text = m_suspect_decrease_time.ToString();
 		m_suspect_decrease_time -= Time.deltaTime;
 
