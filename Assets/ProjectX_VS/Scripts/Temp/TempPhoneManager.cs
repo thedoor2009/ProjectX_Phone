@@ -401,10 +401,12 @@ public class TempPhoneManager : MonoBehaviour {
 
 	private void CheckSuspectValue()
 	{
-		if(CheckWaitFlag()) return;
-
-		SuspectValue.text = m_suspect_decrease_time.ToString();
-		m_suspect_decrease_time -= Time.deltaTime;
+		if(CheckWaitFlag())
+		{
+			SuspectValue.text = m_suspect_decrease_time.ToString();
+			m_suspect_decrease_time -= Time.deltaTime;
+			return;
+		}
 
 		if( AudioDataManagerObject.AudioChoiceName != string.Empty )
 		{
