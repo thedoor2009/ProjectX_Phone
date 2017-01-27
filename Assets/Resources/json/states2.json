@@ -1,0 +1,66 @@
+{
+  "ask_01": [
+    {
+      "next_state": "suepect_sequence_update",
+      "wait_time": 3.0,
+      "retry_round": 0,
+      "start_suspect":true
+    }
+  ],
+  "ask_not_follow": [
+    {
+      "next_state": "suepect_sequence_update",
+      "wait_time": 12.0,
+      "retry_round": 0,
+      "start_suspect":true
+    }
+  ],
+  "ask_30_sec": [
+    {
+      "next_state": "ask_no_wait",
+      "wait_time": 30.0,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ],
+  "ask_no_wait": [
+    {
+      "next_state": "suepect_sequence_update",
+      "wait_time": 7.0,
+      "retry_round": 0,
+      "start_suspect":true
+    }
+  ],
+  "no_excuse": [
+    {
+      "next_state": "make_up",
+      "wait_time": 4.5,
+      "retry_round": 0,
+      "start_suspect":true
+    }
+  ],
+  "you_mad": [
+    {
+      "next_state": "make_up",
+      "wait_time": 4.5,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ],
+  "no_edu": [
+    {
+      "next_state": "make_up",
+      "wait_time": 4.5,
+      "retry_round": 0,
+      "start_suspect":false
+    }
+  ],
+  "make_up": [
+    {
+      "next_state": "suepect_sequence_update",
+      "wait_time": 15.5,
+      "retry_round": 0,
+      "start_suspect":true
+    }
+  ]
+}

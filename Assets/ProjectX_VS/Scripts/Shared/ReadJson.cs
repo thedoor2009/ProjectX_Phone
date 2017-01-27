@@ -6,11 +6,20 @@ using LitJson;
 public class ReadJson : MonoBehaviour {
 
 	public JsonData stateData;
+	public int sceneNum;
 
 	void Start ()
 	{
-		string jsonString = File.ReadAllText( Application.dataPath + "/Resources/json/states.json");
-		stateData = JsonMapper.ToObject( jsonString );
+		if( sceneNum == 1 )
+		{
+			string jsonString = File.ReadAllText( Application.dataPath + "/Resources/json/states.json");
+			stateData = JsonMapper.ToObject( jsonString );
+		}
+		else if( sceneNum == 2 )
+		{
+			string jsonString = File.ReadAllText( Application.dataPath + "/Resources/json/states2.json");
+			stateData = JsonMapper.ToObject( jsonString );
+		}
 	}
 
 	void Update ()
