@@ -118,6 +118,7 @@ public class TempPhoneManager2 : MonoBehaviour {
 			if( value != m_cur_state )
 			{
 				m_play_once = false;
+				m_enable_choices = false;
 			}
 			m_cur_state = value;
 		}
@@ -145,6 +146,7 @@ public class TempPhoneManager2 : MonoBehaviour {
 	private int						m_retry_round = 0;
 	private int						m_wait_point = 0;
 	private bool					m_play_once = false;
+	private bool					m_enable_choices = false;
 	private bool					m_wait_flag = false;
 
 	void Start () 
@@ -159,14 +161,22 @@ public class TempPhoneManager2 : MonoBehaviour {
 		case "ask_01":
 			if( PlayAudioFirstTime("W_01") )
 			{
+				return;
+			}
+
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying )
+			{
+				return;
+			}
+
+			if( !m_enable_choices )
+			{
+				m_enable_choices = true;
 				m_insertAudios.Clear();
 				m_insertAudios.Add("Z_01");
 				m_insertAudios.Add("Z_02");
 				RefreshAudioDataManager();
-				return;
 			}
-
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() )
 				return;	
@@ -177,6 +187,16 @@ public class TempPhoneManager2 : MonoBehaviour {
 		case "ask_not_follow":
 			if( PlayAudioFirstTime("W_02") )
 			{
+				return;
+			}
+
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ){
+				return;
+			}
+
+			if( !m_enable_choices )
+			{
+				m_enable_choices = true;
 				m_insertAudios.Clear();
 				m_insertAudios.Add("Z_05");
 				m_insertAudios.Add("Z_06");
@@ -184,11 +204,6 @@ public class TempPhoneManager2 : MonoBehaviour {
 				m_insertAudios.Add("Z_08");
 				m_insertAudios.Add("Z_09");
 				RefreshAudioDataManager();
-				return;
-			}
-
-			if( AudioDataManagerObject.audioSource.isPlaying ){
-				return;
 			}
 
 			if( CheckAudioChoice() )
@@ -203,7 +218,7 @@ public class TempPhoneManager2 : MonoBehaviour {
 				return;
 			}
 
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() )
 				return;	
@@ -214,14 +229,19 @@ public class TempPhoneManager2 : MonoBehaviour {
 		case "ask_30_sec":
 			if( PlayAudioFirstTime("W_03") )
 			{
+				return;
+			}
+
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
+
+			if( !m_enable_choices )
+			{
+				m_enable_choices = true;
 				m_insertAudios.Clear();
 				m_insertAudios.Add("Z_03");
 				m_insertAudios.Add("Z_04");
 				RefreshAudioDataManager();
-				return;
 			}
-
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() )
 				return;	
@@ -233,7 +253,7 @@ public class TempPhoneManager2 : MonoBehaviour {
 		case "no_excuse":
 			m_seq = seq_2;
 			if( PlayAudioFirstTime("W_06") ) return;
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
 			if( CheckAudioChoice() )
 				return;	
 			else
@@ -244,7 +264,7 @@ public class TempPhoneManager2 : MonoBehaviour {
 		case "you_mad":
 			m_seq = seq_2;
 			if( PlayAudioFirstTime("W_07") ) return;
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
 			if( CheckAudioChoice() )
 				return;	
 			else
@@ -254,7 +274,7 @@ public class TempPhoneManager2 : MonoBehaviour {
 			case "no_edu":
 			m_seq = seq_2;
 			if( PlayAudioFirstTime("W_08") ) return;
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
 			if( CheckAudioChoice() )
 				return;	
 			else
@@ -264,16 +284,22 @@ public class TempPhoneManager2 : MonoBehaviour {
 		case "make_up":
 			if( PlayAudioFirstTime("W_09") )
 			{
+				return;
+			}
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying )
+			{
+				return;
+			}
+
+			if( !m_enable_choices )
+			{
+				m_enable_choices = true;
 				m_insertAudios.Clear();
 				m_insertAudios.Add("Z_10");
 				m_insertAudios.Add("Z_11");
 				RefreshAudioDataManager();
-				return;
 			}
-			if( AudioDataManagerObject.audioSource.isPlaying )
-			{
-				return;
-			}
+
 			if( CheckAudioChoice() )
 				return;
 			else
