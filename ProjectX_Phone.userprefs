@@ -1,16 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ProjectX_VS/Scripts/Temp/TempPhoneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ProjectX_VS/Scripts/Temp/TempPhoneManager2.cs">
     <Files>
-      <File FileName="Assets/ProjectX_VS/Scripts/Temp/TempPhoneManager.cs" Line="403" Column="3" />
+      <File FileName="Assets/ProjectX_VS/Scripts/Temp/TempPhoneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/ProjectX_VS/Scripts/Temp/TempPhoneManager2.cs" Line="167" Column="77" />
+      <File FileName="Assets/ProjectX_VS/Scripts/MainScene/Audio/AudioDataManager.cs" Line="1" Column="1" />
       <File FileName="Assets/ProjectX_VS/Scripts/Shared/ReadJson.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/json/states.json" Line="1" Column="1" />
-      <File FileName="Assets/ProjectX_VS/Scripts/Shared/AudioFilesReader.cs" Line="24" Column="1" />
-      <File FileName="Assets/ProjectX_VS/Scripts/MainScene/Audio/AudioDataManager.cs" Line="89" Column="5" />
+      <File FileName="Assets/ProjectX_VS/Scripts/MainScene/Audio/AudioObjectController.cs" Line="1" Column="1" />
+      <File FileName="Assets/ProjectX_VS/Scripts/MainScene/Audio/AudioDataSource.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/Kiss/Desktop/ProjectX_Phone/ProjectX_Phone/Assets/ProjectX_VS/Scripts/MainScene/Audio/AudioDataManager.cs" line="83" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -5,10 +5,38 @@ using System.Collections.Generic;
 
 public class AudioDataManager : MonoBehaviour {
 
+	public int Talk;
+
 	public AudioSource audioSource;
 	public GameObject LoadingSreenVFX;
 	public Text	AnsweringDisplayTime;
 	public string AudioChoiceName;
+
+	public Dictionary<string, string> AudioDataDictionaryTalk1 = new Dictionary<string, string>()
+	{
+		{"Q_01", 								"好了，我们开始吧"},
+		{"Q_02", 								"稍等一下"},
+		{"Q_03", 								"嗯"},
+		{"Q_04", 								"好的"},
+		{"Q_05", 								"你继续"},
+		{"Q_06", 								"明白"}
+
+	};
+
+	public Dictionary<string, string> AudioDataDictionaryTalk2 = new Dictionary<string, string>()
+	{
+		{"Z_01", 								"可以，你说"},
+		{"Z_02", 								"稍等一下，我旁边有人"},
+		{"Z_03", 								"可以说话了"},
+		{"Z_04", 								"我旁边没人了"},
+		{"Z_05", 								"老板，这里面有误会，我跟你解释一下"},
+		{"Z_06", 								"当时情况特殊，你要相信我"},
+		{"Z_07", 								"我不知道你在说什么，能不能让我解释"},
+		{"Z_08", 								"有事说事，别态度这么差"},
+		{"Z_09", 								"我觉得你这么处理是有问题的"},
+		{"Z_10", 								"我做"},
+		{"Z_11", 								"我没法做"},
+	};
 
 	public Dictionary<string, string> AudioDataDictionary = new Dictionary<string, string>()
 	{
@@ -59,6 +87,18 @@ public class AudioDataManager : MonoBehaviour {
 	public bool  isReady = false;
 
 	private float answeringTimer = 0.0f;
+
+	void Awake()
+	{
+		if( Talk == 1 )
+		{
+			AudioDataDictionary = AudioDataDictionaryTalk1;
+		}
+		else if( Talk == 2 )
+		{
+			AudioDataDictionary = AudioDataDictionaryTalk2;
+		}
+	}
 
 	void Start () 
 	{

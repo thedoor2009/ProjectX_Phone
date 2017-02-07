@@ -54,6 +54,7 @@
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\ReadJson.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Shared\UILayoutAdjuster.cs" />
      <Compile Include="Assets\ProjectX_VS\Scripts\Temp\TempPhoneManager.cs" />
+     <Compile Include="Assets\ProjectX_VS\Scripts\Temp\TempPhoneManager2.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity5.4.0/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

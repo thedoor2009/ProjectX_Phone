@@ -109,6 +109,7 @@ public class TempPhoneManager : MonoBehaviour {
 		{
 			if( value != m_cur_state )
 			{
+				m_enable_choices = false;
 				m_play_once = false;
 			}
 			m_cur_state = value;
@@ -134,6 +135,7 @@ public class TempPhoneManager : MonoBehaviour {
 	private float					m_wait_timer = 0.0f;
 	private int						m_retry_round = 0;
 	private int						m_wait_point = 0;
+	private bool					m_enable_choices = false;
 	private bool					m_play_once = false;
 	private bool					m_wait_flag = false;
 
@@ -170,15 +172,21 @@ public class TempPhoneManager : MonoBehaviour {
 		case "first_ask":
 			if( PlayAudioFirstTime("C_01") )
 			{
+				
+				return;
+			}
+
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
+
+			if( !m_enable_choices )
+			{
+				m_enable_choices = true;
 				m_insertAudios.Clear();
 				m_insertAudios.Add("Q_01");
 				m_insertAudios.Add("Q_02");
 				RefreshAudioDataManager();
-				return;
 			}
 
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
-				
 			if( CheckAudioChoice() )
 				return;	
 			else
@@ -228,14 +236,19 @@ public class TempPhoneManager : MonoBehaviour {
 		case "back_check":
 			if( PlayAudioFirstTime("C_S01") )
 			{
+				return;
+			}
+
+			if( AudioDataManagerObject.audioSource.isPlaying || AudioSource.isPlaying ) return;
+
+			if( !m_enable_choices )
+			{
+				m_enable_choices = true;
 				m_insertAudios.Clear();
 				m_insertAudios.Add("Q_01");
 				m_insertAudios.Add("Q_02");
 				RefreshAudioDataManager();
-				return;
 			}
-
-			if( AudioDataManagerObject.audioSource.isPlaying ) return;
 
 			if( CheckAudioChoice() ) 
 				return;
@@ -371,7 +384,7 @@ public class TempPhoneManager : MonoBehaviour {
 	{
 		if(m_wait_flag) return true;
 
-		Debug.Log(m_wait_timer);
+		//Debug.Log(m_wait_timer);
 		m_wait_timer += Time.deltaTime;
 
 		List<float> wait_points = WaitAudioUnitDictionary[AudioSource.clip.name];
@@ -403,7 +416,7 @@ public class TempPhoneManager : MonoBehaviour {
 	{
 		if(CheckWaitFlag())
 		{
-			SuspectValue.text = m_suspect_decrease_time.ToString();
+			//SuspectValue.text = m_suspect_decrease_time.ToString();
 			m_suspect_decrease_time -= Time.deltaTime;
 			return;
 		}
@@ -601,7 +614,7 @@ public class TempPhoneManager : MonoBehaviour {
 	{
 		NormalWaitTime = time;
 		m_normal_timer += Time.deltaTime;
-		DebugTimer.text = ( NormalWaitTime - m_normal_timer ).ToString();
+		//DebugTimer.text = ( NormalWaitTime - m_normal_timer ).ToString();
 
 		if( m_normal_timer > NormalWaitTime )
 		{
