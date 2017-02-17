@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/ProjectX_VS/Scenes/Phone_Test.unity
+  isLoaded: 1
+  isActive: 1
