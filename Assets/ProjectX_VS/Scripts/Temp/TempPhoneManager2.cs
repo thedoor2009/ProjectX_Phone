@@ -599,10 +599,10 @@ public class TempPhoneManager2 : MonoBehaviour {
 
 	public void CheckNextState( string stateName )
 	{
-		string next_state = ReadJson.GetStateDataByFiled(stateName, "next_state").ToString();
-		double wait_time = (double)ReadJson.GetStateDataByFiled(stateName, "wait_time");
-		int retry_round = (int)ReadJson.GetStateDataByFiled(stateName, "retry_round");
-		bool start_suspect = (bool)ReadJson.GetStateDataByFiled(stateName, "start_suspect");
+		string next_state = ReadJson.GetStateDataByFiled(stateName, 0, "next_state").ToString();
+		double wait_time = (double)ReadJson.GetStateDataByFiled(stateName,0,  "wait_time");
+		int retry_round = (int)ReadJson.GetStateDataByFiled(stateName, 0, "retry_round");
+		bool start_suspect = (bool)ReadJson.GetStateDataByFiled(stateName,0, "start_suspect");
 
 		CheckAudioWaitTimer( next_state, (float)wait_time, retry_round, start_suspect );
 	}

@@ -70,7 +70,7 @@ public class TempPhoneManager : MonoBehaviour {
 
 	private Dictionary<string, List<float>> WaitAudioUnitDictionary = new Dictionary<string, List<float>>
 	{
-		{ "C_07", new List<float>{ 7.0f, 16.5f } }
+		{ "C_07", new List<float>{7.0f, 16.5f } }
 	};
 
 	private Dictionary<string, List<string>> SuspectSequenceAudioDictionary = new Dictionary<string, List<string>>
@@ -414,7 +414,8 @@ public class TempPhoneManager : MonoBehaviour {
 
 	private void CheckSuspectValue()
 	{
-		if(CheckWaitFlag())
+        print(m_suspect_decrease_time);
+        if (CheckWaitFlag())
 		{
 			//SuspectValue.text = m_suspect_decrease_time.ToString();
 			m_suspect_decrease_time -= Time.deltaTime;
@@ -602,10 +603,10 @@ public class TempPhoneManager : MonoBehaviour {
 
 	public void CheckNextState( string stateName )
 	{
-		string next_state = ReadJson.GetStateDataByFiled(stateName, "next_state").ToString();
-		double wait_time = (double)ReadJson.GetStateDataByFiled(stateName, "wait_time");
-		int retry_round = (int)ReadJson.GetStateDataByFiled(stateName, "retry_round");
-		bool start_suspect = (bool)ReadJson.GetStateDataByFiled(stateName, "start_suspect");
+		string next_state = ReadJson.GetStateDataByFiled(stateName, 0, "next_state").ToString();
+		double wait_time = (double)ReadJson.GetStateDataByFiled(stateName, 0, "wait_time");
+		int retry_round = (int)ReadJson.GetStateDataByFiled(stateName, 0, "retry_round");
+		bool start_suspect = (bool)ReadJson.GetStateDataByFiled(stateName, 0, "start_suspect");
 
 		CheckAudioWaitTimer( next_state, (float)wait_time, retry_round, start_suspect );
 	}
